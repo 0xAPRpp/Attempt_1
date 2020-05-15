@@ -51,7 +51,7 @@ void converter(float secs) //overloaded function
 	//converting secs to mins first
 	auto mins{ secs / mins_per_hour };
 	//calculating the remainder secs
-	auto rem_secs{ static_cast<int>(secs) % static_cast<int>(mins_per_hour) }; //you can be tempted to use mins instead of the const, however mind the mins becoming 0.
+	auto rem_secs{ static_cast<int>(secs) % static_cast<int>(mins_per_hour) }; //you can be tempted to use mins instead of the const, however mind the mins becoming 0 and expect wrong results(varying mins value)
 	//converting mins to hours
 	auto hrs{ mins / mins_per_hour };
 	//finally calculating the remainder mins
