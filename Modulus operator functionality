@@ -1,0 +1,13 @@
+//Modulus operator functionality - denominator's sign is ignored.
+# include <iostream> 
+int main()
+{
+	int num{}; //numerator 
+	auto den{ 3 + 4 }; //denominator illustrating an expression during initialization
+	std::cout << "Enter a numerator and denominator: "; 
+	std::cin >> num >> den;
+
+	std::cout << (num / den) * den + (num % den) //This will always result in numerator
+		<< std::endl; //Writing a statement in multiple lines
+	return 0;
+}
