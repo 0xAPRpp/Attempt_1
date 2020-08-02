@@ -1,0 +1,30 @@
+//Height/Distance Converter
+# include <iostream>
+int main()
+{
+	int yards{}, feet{}, inches{}; 
+
+	const auto feet_in_yards{ 3U+0U}, inches_in_feet{12U}; // using suffixes to record the unsigned type, also illustrates the use of an expression in initialization
+
+	std::cout << "Enter distance in Yards, Feet and Inches separated by a space: For ex: 1 2 3"
+		<< std::endl;
+	std::cin >> yards >> feet >> inches;
+
+	std::cout << "Total distance in inches is: " << (yards * feet_in_yards * inches_in_feet) + (feet * inches_in_feet) + inches
+		<< std::endl;
+
+	std::cout << "Enter distance in inches: "
+		<< std::endl;
+
+	std::cin >> inches;
+
+	yards = inches / (feet_in_yards * inches_in_feet);
+	feet = (inches % (feet_in_yards * inches_in_feet))/inches_in_feet;
+	inches = (inches % (feet_in_yards * inches_in_feet)) % inches_in_feet;
+	
+	
+	std::cout << "Total distance in Yards, Feet and Inches is: " << yards << ", "<< feet <<", " << inches
+		<< std::endl;
+
+	return 0;
+}
