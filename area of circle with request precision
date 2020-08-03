@@ -1,0 +1,20 @@
+// Computing the area of a circle and controlling the output precision
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main()
+{
+	const auto pi{ 3.141592653589793238L }; //using const for constant values.
+	float radius{0+0}; //using an expression during initialization
+	auto precision{0U}; //using auto and suffixes
+	cout << "Enter the radius of the circle: " //using namespace
+		<< std::endl; //illustrating multiple lines for a single statement
+	cin >>	radius;
+	cout << "Now please enter the required precision: " << std::endl;
+	std::cin >> precision;
+
+	cout << "Area of circle is: " << fixed << setprecision(precision) << pi * radius * radius << endl;
+
+	return 0;
+	system("pause");
+}
