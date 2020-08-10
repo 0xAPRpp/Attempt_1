@@ -1,0 +1,21 @@
+//factorial of a number
+# include <iostream>
+using std::cin;
+int main()
+{
+	long long int num_for_fact{}, total{1};
+	
+	cin >> num_for_fact;
+	//input validation 
+	if (num_for_fact <= 1)
+		std::cout << "invalid entry" << std::endl;	
+	else
+		while (2 <= num_for_fact)
+		{
+			total *= num_for_fact--;
+		}
+	std::cout << "! is " << total ;
+
+	system("pause");
+	return 0;
+}
