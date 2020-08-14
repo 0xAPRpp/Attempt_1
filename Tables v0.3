@@ -1,0 +1,86 @@
+//Practise
+# include <iostream>
+# include <iomanip>
+# include <cctype>
+using std::cin; //using std::cin;
+using namespace std;//using namespace std
+int main()
+{
+	char ans{};
+	do
+	{
+		int table{}, table_size{};
+		std::cin >> table >> table_size;
+
+		if((table < 2 || table >12)||(table_size < 2 || table_size >12))
+		{
+			std::cout << "Invalid Table values" << std::endl;
+			std::cout << "Try again: y or n?" << std::endl;
+			std::cin >> ans;
+			if (std::tolower(ans) == 'n')
+				break;
+			size_t count{3}; //to count the attempts
+			while ((std::tolower(ans) != 'y') && (std::tolower(ans) != 'n'))
+			{
+				std::cout << "cannot understand, please try again. Remaining attempts: " << count << std::endl;
+				std::cin >> ans;
+				count--;
+				if (count == 0)
+				{
+					std::cout << "Reached max attempts" << std::endl;
+					break;
+				}
+			}
+			continue;
+		}
+		else
+		{
+			std::cout << std::setw(6) << "|";
+			for (size_t i{1}; i <= table; i++)
+			{
+				std::cout << std::setw(4) << i;
+				std::cout << std::setw(2) << '|';
+			}
+			std::cout << std::endl;
+			for (size_t i{}; i <= table; i++)
+			{
+				std::cout << "------" ;
+			}
+			std::cout << std::endl;
+			for (size_t i{ 1 }; i <= table_size; i++)
+			{
+				std::cout << std::setw(4) << i;
+				std::cout << std::setw(2) << '|';
+				
+				for (size_t j{ 1 }; j <= table; j++)
+				{
+					std::cout << setw(4) << j * i;
+					std::cout << setw(2) << '|';
+				}
+				std::cout << std::endl;
+			}
+
+		}
+		std::cout << "Try again: y or n?" << std::endl;
+		std::cin >> ans;
+		size_t count{ 3 }; //to count the attempts
+		while ((std::tolower(ans) != 'y') && (std::tolower(ans) != 'n'))
+		{
+			std::cout << "cannot understand, please try again. Remaining attempts: " << count << std::endl;
+			std::cin >> ans;
+			count--;
+			if (count == 0)
+			{
+				std::cout << "Reached max attempts" << std::endl;
+				return 1;
+			}
+		}
+	} while (std::tolower(ans) == 'y');
+	
+	std::cout << "Program exited" << std::endl;
+	system("pause");
+	return 0;
+}
+
+
+
