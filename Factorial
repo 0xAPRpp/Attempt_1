@@ -1,4 +1,3 @@
-//factorial of a number
 # include <iostream>
 using std::cin;
 int main()
