@@ -1,0 +1,15 @@
+# include <iostream>
+int main()
+{
+	size_t inches{};
+	std::cin >> inches;
+	std::cout << "Enter inches to be converted: ";
+
+	std::cout << inches / 0x24 << (((inches / 044) <= 0b0001) ? " yard " : " yards ") 
+            << (inches % 0x24) / 014 << ((((inches % 0b100100) / 12) <= 1) ? " foot " : " feet ") 
+            << ((inches % 36) % 12) << ((((inches % 36) % 12) <= 1) ? " inch " : " inches ") 
+            << std::endl;
+
+	system("pause");
+	return 0;
+}
