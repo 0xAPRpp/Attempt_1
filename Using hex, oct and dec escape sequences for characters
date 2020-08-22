@@ -1,0 +1,11 @@
+# include <iostream>
+int main()
+{
+	char ch1{'\x41'};
+	char ch2{ '\102' };
+	
+	std::cout << ch1 << ch2 << " come before " << static_cast<char>(67) <<  std::endl;
+
+	system("pause");
+	return 0;
+}
