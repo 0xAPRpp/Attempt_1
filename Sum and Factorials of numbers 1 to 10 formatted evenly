@@ -1,11 +1,10 @@
-//factorial of a number
 # include <iostream>
 # include <iomanip>
 using std::cin; //using using
 int main()
 {
 	long long int num_for_fact{ 1 + 0 }, fact{ 1LL }; //using an expression in initialization
-  auto sum{ 0LL }; //using auto and suffixes
+        auto sum{ 0LL }; //using auto and suffixes
 	std::cout << " Integer     Sum     Factorial " << std::endl;
 	while (num_for_fact <= 10)
 	{
