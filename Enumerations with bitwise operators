@@ -1,0 +1,23 @@
+# include<iostream>
+# include<iomanip>
+int main()
+{
+	enum class colors:size_t { Red = 0xFF0000, Green = 0x00FF00, Yellow = 0xFFFF00, Purple = 0x800080, Blue = 0x0000FF, Black = 0x000000, White	= 0xFFFFFF
+	};
+
+	colors yellow{ colors::Yellow };
+	colors purple{ colors::Purple };
+	colors green { colors::Green };
+
+	std::cout << "Yellow - " << std::hex << std::setw(6) << std::setfill('0') <<
+		(static_cast<size_t>(yellow) & static_cast<size_t>(colors::Red)) << " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(yellow) & static_cast<size_t>(colors::Green))
+		<< " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(yellow) & static_cast<size_t>(colors::Blue)) << std::endl;
+	std::cout << "Purple - " << std::hex << std::setw(6) << std::setfill('0') <<
+		(static_cast<size_t>(purple) & static_cast<size_t>(colors::Red)) << " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(purple) & static_cast<size_t>(colors::Green))
+		<< " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(purple) & static_cast<size_t>(colors::Blue)) << std::endl;
+	std::cout << "Green  - " << std::hex << std::setw(6) << std::setfill('0') <<
+		(static_cast<size_t>(green) & static_cast<size_t>(colors::Red)) << " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(green) & static_cast<size_t>(colors::Green))
+		<< " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(green) & static_cast<size_t>(colors::Blue)) << std::endl;
+
+	system("pause");
+	return 0;
