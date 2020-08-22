@@ -1,0 +1,65 @@
+# include <iostream>
+using std::cout; //"using" for specific objects
+using std::cin;
+
+using namespace std; //"using" for the whole namespace
+
+void converter(double inches);
+void converter(float secs);
+
+int main()
+{
+	//using auto, however synthesize the type for yourself before using auto.
+	auto inches{0.0};  // this is double - called double because it has twice the bits of float
+	auto secs{ 0.0f }; //float
+	cout << "Enter inches and secs to be converted: ";
+	cin >> inches;
+	cin >> secs;
+
+	converter(inches);
+	converter(secs);
+
+	return 0;
+}
+
+void converter(double inches)
+{
+	const auto feet_per_yard{3.0L + 0}; //you can use expressions during initialization
+	const auto inches_per_feet{ 12.0L + 0 };
+
+	//converting inches to feet first
+	auto feet{inches/inches_per_feet};
+	//calculating the remainder inches
+	auto rem_inches{ static_cast<int>(inches) % static_cast<int>(inches_per_feet) }; //requires cast for modulus operator
+	//converting feet to yards
+	auto yards{feet/feet_per_yard};
+	//finally calculating the remainder feet
+	auto rem_feet{static_cast<int>(feet) % static_cast<int>(feet_per_yard) }; // float doesn't work with modulus.
+
+	cout << "Converter for distances - from Inches to Yards, Feet and Inches" << endl;
+	cout << "from " << inches << (inches == 1 ? " Inch to " : " Inches to ") << static_cast<int>(yards) << (static_cast<int>(yards) == 1 ? " Yard, " : " Yards, ") << rem_feet << (rem_feet==1?" Foot and ":" Feet and ") << rem_inches << (rem_inches == 1 ? " Inch" : " Inches") << std::endl;
+
+
+		return; //cannot return multiple values, hence printing the values too using the same function after calculating.
+} 
+
+void converter(float secs) //overloaded function
+{
+	const auto mins_per_hour{ 60.0f + 0}; 
+	const auto secs_per_min{ 60.0f + 0 };
+
+	//converting secs to mins first
+	auto mins{ secs / mins_per_hour };
+	//calculating the remainder secs
+	auto rem_secs{ static_cast<int>(secs) % static_cast<int>(mins_per_hour) }; //you can be tempted to use mins instead of the const, however mind the mins becoming 0 and expect wrong results(varying mins value)
+	//converting mins to hours
+	auto hrs{ mins / mins_per_hour };
+	//finally calculating the remainder mins
+	auto rem_mins{ static_cast<int>(mins) % static_cast<int>(mins_per_hour) };
+
+	cout << "Converter for time - from secs to Hours, Minutes and Seconds" << endl;
+	cout << "from " << secs << " Sec(s) to " << static_cast<int>(hrs) << " Hour(s), " << rem_mins << " Min(s) and " << rem_secs << " Sec(s)" << std::endl;
+
+
+	return;
+}
