@@ -1,4 +1,3 @@
-//Calculating primes using dynamic memory allocation.
 # include <iostream>
 # include <iomanip>
 # include <array>
