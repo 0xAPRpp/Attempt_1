@@ -1,0 +1,56 @@
+//using vectors and smart pointers for arbitrary temps and days
+# include <iostream>
+# include <iomanip>
+# include <vector>
+# include <cctype>
+# include <memory>
+using std::cin; //using std::cin;
+using namespace std;//using namespace std
+int main()
+{
+	std::unique_ptr<std::vector<std::vector<double>>> days{ std::make_unique<std::vector<std::vector<double>>>() }; // A pointer to vector doesn't work the same way as a pointer to an array
+	//you cannot use the pointer variable and use the square braces to access elements like with an array. you have to dereference the pointer to vector to access the vector.
+
+	std::shared_ptr<std::vector<double>> temps{ std::make_shared<std::vector<double>>() };
+
+	double temp{};
+	char ans{ 'y' };
+
+	while (std::tolower(ans) == 'y')
+	{
+		std::cout << "Do you want to enter temperatures for the day: y or n";
+		std::cin >> ans;
+		if (std::tolower(ans) != 'y')
+			break;
+		std::cout << "Enter temps for the day with spaces between and 1000 to end" << std::endl;
+		while (true)
+		{
+			std::cin >> temp;
+			if (temp == 1000)
+				break;
+			temps->push_back(temp);
+		}
+		days->push_back((*temps));
+		temps->clear();
+	}
+
+	for (size_t i{}; i < std::size(*days); i++)
+	{
+		double total{};
+		std::cout << "Temperatures for day " << i + 1 << std::endl;
+		for (size_t j{}; j < std::size((*days)[i]); j++)
+		{
+			std::cout << ((*days)[i])[j] << " ";
+			total += ((*days)[i])[j];
+		}
+		std::cout << std::endl;
+		std::cout << "Average for day " << i + 1 << " is: " << total / std::size((*days)[i]) << std::endl;
+	}
+
+	std::cout << "Program exited" << std::endl;
+
+	system("pause");
+	return 0;
+}
+
+
