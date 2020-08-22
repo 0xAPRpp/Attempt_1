@@ -12,12 +12,24 @@ int main()
 	std::cout << "Yellow - " << std::hex << std::setw(6) << std::setfill('0') <<
 		(static_cast<size_t>(yellow) & static_cast<size_t>(colors::Red)) << " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(yellow) & static_cast<size_t>(colors::Green))
 		<< " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(yellow) & static_cast<size_t>(colors::Blue)) << std::endl;
+	std::cout << "Yellow - " << std::setw(6) << std::dec << std::setfill(' ') <<
+		((static_cast<size_t>(yellow) & static_cast<size_t>(colors::Red))>>16) << " + " << std::setw(6) << std::dec << std::setfill(' ') << ((static_cast<size_t>(yellow) & static_cast<size_t>(colors::Green))>>8)
+		<< " + " << std::setw(6) << std::dec << std::setfill(' ') << (static_cast<size_t>(yellow) & static_cast<size_t>(colors::Blue)) << std::endl;
+
 	std::cout << "Purple - " << std::hex << std::setw(6) << std::setfill('0') <<
 		(static_cast<size_t>(purple) & static_cast<size_t>(colors::Red)) << " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(purple) & static_cast<size_t>(colors::Green))
 		<< " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(purple) & static_cast<size_t>(colors::Blue)) << std::endl;
+	std::cout << "Purple - " << std::setw(6) << std::dec << std::setfill(' ') <<
+		((static_cast<size_t>(purple) & static_cast<size_t>(colors::Red)) >> 16) << " + " << std::setw(6) << std::dec << std::setfill(' ') << ((static_cast<size_t>(purple) & static_cast<size_t>(colors::Green)) >> 8)
+		<< " + " << std::setw(6) << std::dec << std::setfill(' ') << (static_cast<size_t>(purple) & static_cast<size_t>(colors::Blue)) << std::endl;
+
 	std::cout << "Green  - " << std::hex << std::setw(6) << std::setfill('0') <<
 		(static_cast<size_t>(green) & static_cast<size_t>(colors::Red)) << " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(green) & static_cast<size_t>(colors::Green))
 		<< " + " << std::setw(6) << std::setfill('0') << (static_cast<size_t>(green) & static_cast<size_t>(colors::Blue)) << std::endl;
+	std::cout << "Green - " << std::setw(6) << std::dec << std::setfill(' ') <<
+		((static_cast<size_t>(green) & static_cast<size_t>(colors::Red)) >> 16) << " + " << std::setw(6) << std::dec << std::setfill(' ') << ((static_cast<size_t>(green) & static_cast<size_t>(colors::Green)) >> 8)
+		<< " + " << std::setw(6) << std::dec << std::setfill(' ') << (static_cast<size_t>(green) & static_cast<size_t>(colors::Blue)) << std::endl;
 
 	system("pause");
 	return 0;
+}
