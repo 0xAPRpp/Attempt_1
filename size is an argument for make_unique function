@@ -1,0 +1,32 @@
+# include <iostream>
+# include <iomanip>
+# include <vector>
+# include <cctype>
+# include <array>
+# include <memory>
+# include <cmath>
+using std::cin; //using std::cin;
+using namespace std;//using namespace std
+int main()
+{
+	size_t size{};
+	std::cin >> size;
+	std::unique_ptr<double[]> p_arr{ std::make_unique<double[]>(size) };
+
+	for (size_t i{}; i < size; i++)
+	{
+		*(p_arr.get()+i) = (1.0 / ((i + 1) * (i + 1)));
+	}
+
+	double sum{};
+	for (size_t i{}; i < size; i++)
+	{
+		sum += p_arr[i];
+	}
+
+	std::cout << "Result is: " << std::sqrt(sum * 6);
+
+	std::cout << std::endl;
+	system("pause");
+	return 0;
+}
