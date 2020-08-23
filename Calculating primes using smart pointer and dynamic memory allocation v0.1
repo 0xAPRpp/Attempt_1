@@ -1,0 +1,44 @@
+#include <iostream>
+#include <iomanip>
+# include <cctype>
+# include <memory>
+
+using namespace std;
+int main()
+{
+	size_t count{};
+	std::cout << "How many primes do you want to find: ";
+	std::cin >> count;
+	
+	std::unique_ptr<size_t[]> sp_primes{ std::make_unique<size_t[]>(count) };
+	sp_primes[0] = 2;
+
+	size_t primes_found{ 1 };
+	bool isprime{};
+	size_t prm_cdd{ 3 };
+	while (primes_found < count)
+	{
+		isprime = true;
+		for (size_t j{}; sp_primes[j] <= std::sqrt(prm_cdd); j++)
+		{
+			if (prm_cdd % sp_primes[j] == 0)
+			{
+				isprime = false;
+				break;
+			}
+		}
+		if (isprime)
+		{
+			sp_primes[primes_found] = prm_cdd;
+			primes_found++;			
+		}
+		prm_cdd += 2;
+	}
+	
+	for (size_t i{}; i < count; i++)
+		std::cout << sp_primes[i] << std::endl;
+	std::cout << "exiting..." << std::endl;
+
+	system("pause");
+	return 0;
+}
