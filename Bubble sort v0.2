@@ -1,0 +1,40 @@
+# include <iostream>
+using std::cin; //using std::cin;
+using namespace std;//using namespace std
+int main()
+{
+	const int size{ 10 };
+	int arr[size]; //The array that needs to be sorted in ascending order.
+  /*In order to sort the elements in an ascending order, you need 2 loops - one sub loop that checks the consecutive elements from the beginning for the larger value
+  and swap accordingly and the main loop that repeats this sub loop until the requirement is met. The sub loop iterates until it reaches the end of its size. The main loop
+  breaks out when the requirement/expectation is met.
+  You set the expectation before the sub loop and check if the expectation is met after the sub loop. The sub loop processes the elements to see if the expectation is met.
+  */
+	std::cout << "Enter exactly 10 array values: ";
+	for (size_t i{}; i < size; i++)
+		std::cin >> arr[i];
+	bool swapped{true};
+	while (swapped == true)
+	{
+		swapped = false; //This is the expectation - when all the elements are in ascending order - there is nothing to swap.
+		for (size_t i{}; i < size-1; i++)
+		{
+			
+			if (arr[i] > arr[i + 1])
+			{
+				int swap{};
+				swap = arr[i];
+				arr[i] = arr[i + 1];
+				arr[i + 1] = swap;
+				swapped = true; //This is set to true to ensure the condition is not met.
+			}
+		}
+	}
+
+	for (auto x : arr)
+		std::cout << " " << x ;
+	std::cout << std::endl;
+
+	system("pause");
+	return 0;
+}
