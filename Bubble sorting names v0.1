@@ -1,0 +1,47 @@
+//Read as many names as the user wants and sorting them in ascending order
+# include <iostream>
+# include <string>
+# include <vector>
+# include <cctype>
+int main()
+{
+	std::vector<std::string> names{}; //creating a vector to store the names dynamically, vector allows you to store as many as you need conveniently.
+
+	char ans{'y'}; //variable to store yes or no
+
+	std::string text{}; //string to store names that are read into the vector names.
+
+	//loop to start storing as many names as the user wants
+	while (std::tolower(ans) == 'y')
+	{
+		std::cin >> text;
+		names.push_back(text);
+		std::cout << "Add more? y or n: ";
+		std::cin >> ans;
+	}
+
+	//sorting the entries in ascending order
+	bool swapped{true}; //flag for the expectation
+	while (swapped == true) //Main loop that iterates as long as there is a swap
+	{
+		swapped = false; // the expectation that when nothing is swapped, elements are in order
+		for (size_t i{}; i < (std::size(names)-1); i++) //subloop that compares consecutive elements and swaps them to keep them in order
+		{
+			if (names[i] > names[i + 1])
+			{
+				std::swap(names[i], names[i + 1]);
+				swapped = true;
+			}
+		}
+	}
+
+	//Printing the names
+	for (auto x : names)// auto is std::string
+	{
+		std::cout << x << std::endl;
+	}
+
+
+	system("pause");
+	return 0;
+}
