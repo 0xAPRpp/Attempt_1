@@ -1,1 +1,1 @@
-The code is an expression of my idiosyncracies
+The code is an expression of my idiosyncrasies
