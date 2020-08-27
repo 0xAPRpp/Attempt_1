@@ -1,0 +1,39 @@
+//Replace a word with another in some text
+# include <iostream>
+# include <string>
+int main()
+{
+	std::string text{}; //Text to be entered
+	std::getline(std::cin,text,'*');
+
+	std::string word{}; //word to be replaced
+	std::cin >> word;
+
+	std::string sub{}; // substitution word
+	std::cin >> sub;
+
+	//std::string separators{"\'*-_,.\"\\/()"};
+
+	//loop to go through all the words to be replaced.
+	size_t index{}; //variable to store the index where the word is found to be replaced.
+	for (size_t i{}; i <= (text.length() - word.length());)
+	{
+		if ((index = text.find(word, i)) == std::string::npos) //if you do not find the word, break out of the loop
+			break;		
+		else //else you found the word
+		{
+			std::cout << index << " " << word.length() << std::endl;
+			text.replace(index, word.length(), sub); //replace the word
+			i = index + sub.length(); //set the index to one letter after the last letter of sub word to check for overlapping occurrences.
+			//Made a mistake above where index + 1 was used instead of index + sub.length() and as a result ended in an indefinite loop with the following input
+			//text = A rose is a rose is a rose.* | word = a | sub = dand
+			//The problem is: you are replacing a with da and incrementing the i with 1 to start searching from the a in da which indefinitely replaces a with da.
+		}		
+		std::cout << text << std::endl;
+	}
+
+	std::cout << text << std::endl;
+
+	system("pause");
+	return 0;
+}
