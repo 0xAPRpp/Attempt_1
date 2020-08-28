@@ -1,0 +1,83 @@
+
+# include <iostream>
+# include <string>
+# include <vector>
+# include <cctype>
+# include <iomanip>
+using namespace std;
+int main()
+{
+	std::string text{};
+	std::getline(std::cin, text, '*');
+
+	std::string word{}, word1{}, wordu{}, wordl{};
+	std::cin >> word;
+
+	word1 = wordu = wordl = word;
+	for (size_t i{}; i < word.length(); i++)
+	{
+		wordu[i] = std::toupper(wordu[i]);
+		wordl[i] = std::tolower(wordl[i]);
+	}
+
+	word1 = wordl;
+	word1[0] = wordu[0];
+
+	std::cout << word1 << std::endl;
+	std::cout << wordu << std::endl;
+	std::cout << wordl << std::endl;
+
+	std::string separators{ "-_()/\\\n \'\",.:;!?" };
+
+	size_t start{}, end{};
+
+	if (((start = text.find(word1)) == std::string::npos) && ((start = text.find(wordl)) == std::string::npos) && ((start = text.find(wordu)) == std::string::npos))
+	{
+		cout << "No match" << endl;
+		return 1;
+	}
+
+	for (size_t i{}; i < text.length();)
+	{		
+		if ((start = text.find(word1, i)) != std::string::npos) //This line is corrected with the if statement checking for npos, otherwise was an indefinite loop.
+		{
+			if ((((start == 0) || (text.find_first_of(separators, start - 1) == (start - 1))) && (((text.find_first_of(separators, start + word1.length()) == start + word1.length())|| (text.find_first_of(separators, start + word1.length()) == std::string::npos)))))
+				for (size_t i{ start }; i < (start + word1.length()); i++)
+					text[i] = '*';
+			i = start + word1.length();
+		}
+		else
+			break;
+		
+	}
+
+	for (size_t i{}; i < text.length();) 
+	{
+		if ((start = text.find(wordu, i)) != std::string::npos)
+		{
+			if ((((start == 0) || (text.find_first_of(separators, start - 1) == (start - 1))) && (((text.find_first_of(separators, start + word1.length()) == start + word1.length()) || (text.find_first_of(separators, start + word1.length()) == std::string::npos)))))
+				for (size_t i{ start }; i < (start + word1.length()); i++)
+					text[i] = '*';
+			i = start + word1.length();
+		}
+		else
+			break;
+	}
+
+	for (size_t i{}; i < text.length();) 
+	{
+		if ((start = text.find(wordl, i)) != std::string::npos)
+		{
+			if ((((start == 0) || (text.find_first_of(separators, start - 1) == (start - 1))) && (((text.find_first_of(separators, start + word1.length()) == start + word1.length()) || (text.find_first_of(separators, start + word1.length()) == std::string::npos)))))
+				for (size_t i{ start }; i < (start + word1.length()); i++)
+					text[i] = '*';
+			i = start + word1.length();
+		}
+		else
+			break;
+	}
+	cout << text << endl;
+
+	system("pause");
+	return 0;
+}
