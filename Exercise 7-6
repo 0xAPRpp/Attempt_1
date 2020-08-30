@@ -1,0 +1,51 @@
+# include <iostream>
+# include <string>
+# include <vector>
+# include <cctype>
+# include <iomanip>
+using namespace std;
+int main()
+{
+	std::string text{};
+	std::vector<std::string> words{};
+	std::string chars{};
+		
+	std::getline(std::cin, text, '*');
+	std::cin >> chars;
+
+	const std::string separators{ "_()/\\\n \'\",.:;!?" };
+
+	//Finding words and storing them in the words vector
+	//A loop to go through the text that finds the starting/ending of a word.
+	size_t start{}, end{};
+	for (size_t i{}; i < text.length(); i = end + 1)
+	{
+		start = text.find_first_not_of(separators, i);
+		end = text.find_first_of(separators, start+1);
+		words.push_back(text.substr(start, end - start));		
+	}
+
+	//To compare each character in chars string to the starting letters of each word.
+	//We need 2 loops with the main loop iterating over the characters from chars string.
+	//sub loop iterates over the words from words vector.
+	//sub loop will print the char and its associated word 
+	//A count variable to print "no words" after subloop if no words are matching.
+	size_t count{};
+	for (size_t i{}; i < chars.length(); i++)
+	{
+		count = 0;
+		for (auto x : words) //Range based for loop to iterate over words where x is a string.
+		{
+			if (std::tolower(chars[i]) == std::tolower(x[0]))
+			{
+				cout << "Character:" << chars[i] << " Word:" << x << endl;
+				count++;
+			}
+		}
+		if(count == 0)
+			cout << "Character:" << chars[i] << " No Words" << endl;
+	}
+
+	system("pause");
+	return 0;
+}
