@@ -1,0 +1,30 @@
+# include <iostream>
+# include <string>
+# include <vector>
+# include <cctype>
+# include <iomanip>
+# include <sstream>
+using namespace std;
+int main()
+{
+	std::string int_str{};
+	std::getline(std::cin, int_str , '6');
+
+	std::stringstream ss{ int_str };
+	cout << ss.str() << endl;
+	int val{}, total{}, count{};
+	while (ss) //This loop iterates for the terminating character '6' so you might want to reset the val variable after each loop to get the desired output
+	{
+		ss >> val;
+		cout << val << endl;
+		total += val;
+		cout << total << 't' << endl;
+		count++;
+		cout << count << endl;
+	}
+	std::cout << "Total is: " << total << endl;
+	std::cout << "Average is: " << static_cast<double>(total) / static_cast<double>(count) << endl;
+
+	system("pause");
+	return 0;
+}
