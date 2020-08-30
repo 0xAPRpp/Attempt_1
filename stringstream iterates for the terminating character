@@ -19,7 +19,7 @@ int main()
 		cout << val << endl;
 		total += val;
 		cout << total << 't' << endl;
-		count++;
+		count++; //this also increases by one extra value that gives incorrect result.
 		cout << count << endl;
 	}
 	std::cout << "Total is: " << total << endl;
