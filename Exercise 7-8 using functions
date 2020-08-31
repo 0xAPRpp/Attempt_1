@@ -1,0 +1,67 @@
+# include <iostream>
+# include <string>
+# include <vector>
+
+using namespace std;
+
+//Function prototypes
+std::string string_concatenator();
+std::vector<int> integer_extractor(std::string str);
+int sum_cal(std::vector<int> values);
+
+int main()
+{
+	std::string str{}; //An empty string to store the concatenated string created by the string_concatenator function.
+	str = string_concatenator(); //Fucntion 1
+
+	cout << str << endl;
+
+	std::vector<int> int_values{};
+	int_values = integer_extractor(str);
+
+	cout << "Total is " << sum_cal(int_values) << endl;
+
+	system("pause");
+	return 0;
+}
+//One function to concatenate the individual strings input by the user
+std::string string_concatenator()
+{
+	std::string input{}, concatenated_string{};
+	while (input != "#")
+	{
+		cout << "Enter an integer and press enter: ";
+		cin >> input;
+		concatenated_string += (input + " ");
+	}
+	return concatenated_string;
+}
+
+//Second function to extract the integers
+std::vector<int> integer_extractor(std::string str)
+{
+	size_t start{}, end{};
+	std::string separator{ " #" }; //Removing # causes the program to abort because # is part of the string, i.e the terminating character is stored inside the string.
+	std::vector<int> values{};
+	for (size_t i{}; i < str.length(); i = end + 1)
+	{
+		start = str.find_first_not_of(separator, i);
+		cout << start << endl;
+		if (start == std::string::npos)
+			break;
+		end = str.find_first_of(separator, start + 1);
+		cout << end << endl;
+			values.push_back(std::stoi(str.substr(start, end-start)));	
+			cout << str.substr(start, end - start) << endl;
+	}
+	return values;
+}
+
+//Third function to calculate the sum
+int sum_cal(std::vector<int> values)
+{
+	int total{};
+	for (auto x : values) //x is an integer
+		total += x;
+	return total;
+}
