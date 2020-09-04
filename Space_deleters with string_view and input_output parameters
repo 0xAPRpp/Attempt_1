@@ -1,0 +1,41 @@
+# include <iostream>
+# include <string_view>
+# include <string>
+# include <string_view>
+# include <vector>
+
+//prototype
+void space_deleter(std::string_view text1, std::string& texta);
+
+int main()
+{		
+	std::string text1{}, text2{};
+	std::string texta{}, textb{};
+
+	std::getline(std::cin, text1);
+	std::getline(std::cin, text2);
+
+	space_deleter(text1, texta);
+	std::cout << texta << 'a' << std::endl;
+	space_deleter(text2, textb);
+	std::cout << textb << 'b' << std::endl;
+
+	system("pause");
+	return 0;
+}
+
+void space_deleter(std::string_view text1, std::string& texta)
+{
+	texta = text1;
+	
+	for (size_t i{}; i < texta.length();)
+	{
+		if (isspace(texta[i]))
+		{
+			texta.erase(i, 1);
+			continue;
+		}
+		else
+			i++;
+	}
+}
