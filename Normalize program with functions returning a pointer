@@ -1,0 +1,72 @@
+# include <iostream>
+# include <array>
+//prototype
+const double* find_min(const double(&)[12]);
+double* add_min(double(&dv)[12], double min);
+const double* find_max(const double(&dv)[12]);
+double* normalize(double(&dv)[12], double max);
+
+int main()
+{	
+	double values[12];
+	
+	for (size_t i{}; i < std::size(values); i++)
+		std::cin >> values[i];
+
+	add_min(values, -(*(find_min(values))));
+
+	for (size_t i{}; i < std::size(values); i++)
+		std::cout << values[i] << " ";
+	std::cout << std::endl;
+
+	std::cout << *(find_max(values)) << std::endl;
+
+	normalize(values, *(find_max(values)));
+
+	for (size_t i{}; i < std::size(values); i++)
+		std::cout << values[i] << " ";
+		
+	system("pause");
+	return 0;
+}
+
+const double* find_min(const double (&dv)[12])
+{
+	size_t min_index{};
+	for (size_t i{}; i < std::size(dv); i++)
+	{
+		if (dv[min_index] < dv[i])
+			continue;
+		else
+			min_index = i;
+	}
+	return &dv[min_index];
+}
+
+
+double* add_min(double(&dv)[12], double min)
+{
+	for (size_t i{}; i < std::size(dv); i++)
+		dv[i] += min;
+	return dv;
+}
+
+const double* find_max(const double(&dv)[12])
+{
+	size_t max_index{};
+	for (size_t i{}; i < std::size(dv); i++)
+	{
+		if (dv[max_index] > dv[i])
+			continue;
+		else
+			max_index = i;
+	}
+	return &dv[max_index];
+}
+
+double* normalize(double(&dv)[12], double max)
+{
+	for (size_t i{}; i < std::size(dv); i++)
+		dv[i] /= max;
+	return dv;
+}
