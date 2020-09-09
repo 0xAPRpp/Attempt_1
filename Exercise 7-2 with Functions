@@ -1,0 +1,79 @@
+# include <iostream>
+# include <string>
+# include <array>
+# include <vector>
+# include <cctype>
+
+//prototype
+void find_words(const std::string& text, std::vector<std::string>& words);
+void find_words_occurrences(const std::vector<std::string>& words, std::vector<std::string>& words_u, std::vector<size_t>& counts);
+
+int main()
+{	
+	std::string text{};
+	std:: getline(std::cin, text, '*');
+	
+	std::vector<std::string> words{};
+	find_words(text,words);
+
+	std::vector<std::string> words_u{};
+	std::vector<size_t> counts{};
+
+	find_words_occurrences(words, words_u, counts);
+
+	for (size_t i{}; i < std::size(words_u); i++)
+		std::cout << words_u[i] <<" "<< counts[i] << std::endl;	
+
+	system("pause");
+	return 0;
+}
+
+void find_words(const std::string& text, std::vector<std::string>& words)
+{
+	size_t start{}, end{};
+	const std::string separators{ "-_()/\\\n \'\",.:;!?" };
+	for (size_t i{}; i < text.length(); i = end + 1)
+	{
+		if ((start = text.find_first_not_of(separators, i)) == std::string::npos)
+			return;
+		else
+			if ((end = text.find_first_of(separators, start+1)) == std::string::npos)
+			{
+				end = text.length();
+				words.push_back(text.substr(start, end - start));
+			}
+			else
+				words.push_back(text.substr(start, end - start));
+	}
+	return;
+}
+
+void find_words_occurrences(const std::vector<std::string>& words, std::vector<std::string>& words_u, std::vector<size_t>& counts)
+{
+	size_t count{};
+	bool matched{};
+	for (auto x : words)
+	{
+		matched = false;
+		for (auto a : words_u)
+		{
+			if (x == a)
+			{
+				matched = true;
+				break;
+			}
+		}
+		if (matched == true)
+			continue;
+		count = 0;
+		for (auto y : words)
+		{
+			if (x == y)
+				count++;
+		}
+		counts.push_back(count);
+		words_u.push_back(x);
+	}
+
+
+}
