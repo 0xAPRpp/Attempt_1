@@ -1,0 +1,17 @@
+# include <iostream>
+int main()
+{
+	int int1{}, int2{};
+
+	std::cin >> int1 >> int2;
+
+	if (int1 != int2)
+		std::cout << "not same" << std::endl;
+	else
+		std::cout << "same" << std::endl;
+
+
+
+
+
+}
