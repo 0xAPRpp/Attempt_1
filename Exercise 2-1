@@ -1,0 +1,13 @@
+# include <iostream>
+const float pi{3.14};
+int main()
+{
+	float radius_of_circle{};
+
+	std::cout << "Please enter the radius: ";
+	std::cin >> radius_of_circle;
+
+	std::cout << "Area is: " << (pi * radius_of_circle * radius_of_circle) << std::endl;
+
+	return 0;
+}
