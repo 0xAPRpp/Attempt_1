@@ -1,0 +1,17 @@
+# include <iostream>
+# include <iomanip>
+const double pi{ 3.141592653589793238 };
+int main()
+{
+	double radius_of_circle{};
+	std::cout << "Please enter the radius: ";
+	std::cin >> radius_of_circle;
+
+	size_t precision{};
+	std::cout << "Please enter the precision for output: ";
+	std::cin >> precision;
+
+	std::cout << "Area is: " << std::setprecision(precision) << (pi * radius_of_circle * radius_of_circle) << std::endl;
+
+	return 0;
+}
