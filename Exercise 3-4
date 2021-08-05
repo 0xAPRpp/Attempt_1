@@ -1,0 +1,25 @@
+# include <iostream>
+int main()
+{
+	char a{}, b{}, c{}, d{};
+
+	int ch{};
+
+	std::cin >> a >> b >> c >> d;
+
+	ch |= static_cast<int>(d);
+	ch = (ch | ((static_cast<int>(c)) << 8));
+	ch = (ch | ((static_cast<int>(b)) << 16));
+	ch = (ch | ((static_cast<int>(a)) << 24));
+
+	std::cout << std::hex << ch << std::endl;
+	std::cout << std::dec << ch << std::endl;
+
+	std::cout << std::hex << static_cast<char>(ch & 0x000000FF) << std::endl;
+	std::cout << std::hex << static_cast<char>((ch & 0x0000ff00)>>8) << std::endl;
+	std::cout << std::hex << static_cast<char>((ch & 0x00ff0000)>>16) << std::endl;
+	std::cout << std::hex << static_cast<char>((ch & 0xff000000)>>24) << std::endl;
+	
+
+
+}
