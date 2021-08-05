@@ -1,0 +1,45 @@
+/*Exercise 4-7. Implement a program that prompts for input of a letter. Use a library
+function to determine whether the letter is a vowel and whether it is lowercase or not,
+and output the result. Finally, output the lowercase letter together with its character
+code as a binary value.
+Hint: Even though starting with C++14, C++ supports binary integral literals (of
+form 0b11001010; see Chapter 2), C++ standard output functions and streams
+do not support outputting integral values in binary format. They mostly do support
+hexadecimal and octal formatting—for std::cout, for instance, you can use the std::hex
+and std::oct output manipulators defined in <ios>. But to output a character in binary
+format, you’ll thus have to write some code yourself. It shouldn’t be too hard, though:
+a char normally has only eight bits, remember? You can just stream these bits one by
+one. Perhaps these binary integer literals can be helpful as well—why else would we
+have mentioned them at the start of this hint?*/
+
+# include <iostream>
+int main()
+{
+	char letter{};
+
+	std::cin >> letter;
+
+	if (tolower(letter) == 'a' || tolower(letter) == 'e' || tolower(letter) == 'i' || tolower(letter) == 'o' || tolower(letter) == 'u')
+		std::cout << "Vowel" << std::endl;
+	else
+		std::cout << "Not Vowel" << std::endl;
+	if (islower(letter))
+		std::cout << "Lower" << std::endl;
+	else
+		std::cout << "Not Lower" << std::endl;
+
+	std::cout << static_cast<char>(tolower(letter)) << static_cast<int>(letter) << std::endl;
+
+	unsigned int mask{ 0b1000'0000 };
+
+	std::cout
+		<< ((letter & mask) >> 7)
+		<< ((letter & (mask >> 1)) >> 6)
+		<< ((letter & (mask >> 2)) >> 5)
+		<< ((letter & (mask >> 3)) >> 4)
+		<< ((letter & (mask >> 4)) >> 3)
+		<< ((letter & (mask >> 5)) >> 2)
+		<< ((letter & (mask >> 6)) >> 1)
+		<< (letter & (mask >> 7))
+		<< std::endl;
+}
