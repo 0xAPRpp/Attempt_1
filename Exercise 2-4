@@ -1,0 +1,28 @@
+# include <iostream>
+# include <cmath>
+const float pi{ 3.141592653589793238f };
+int main() 
+{
+
+	float distance_in_ft{};
+	float height_of_the_eye_in_inches{};
+	float angle_in_degrees{};
+	float height_of_the_tree_in_inches{};
+
+	std::cout << "Enter distance in feet: ";
+	std::cin >> distance_in_ft;
+	
+	std::cout << "Enter the height of the eye: ";
+	std::cin >> height_of_the_eye_in_inches;
+
+	std::cout << "Enter the angle: ";
+	std::cin >> angle_in_degrees;
+
+	height_of_the_tree_in_inches = height_of_the_eye_in_inches/12.0 + (distance_in_ft * tan(angle_in_degrees *= pi / 180.0f));
+
+	std::cout
+		<< "Height of the tree in feet: "
+		<< height_of_the_tree_in_inches << std::endl;
+		
+	return 0;
+}
