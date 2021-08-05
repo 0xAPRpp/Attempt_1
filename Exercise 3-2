@@ -1,0 +1,16 @@
+# include <iostream>
+
+const int inft{ 12 };
+
+int main() 
+{
+	double length{}, depth{};
+
+	int side{};
+
+	std::cin >> length >> depth >> side;
+
+	std::cout << static_cast<long int>(((length * inft) / side) * ((depth * inft) / side)) << std::endl;
+
+	return 0;
+}
