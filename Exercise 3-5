@@ -1,0 +1,21 @@
+/*Exercise 3-5. Write a program that defines an enumeration of type Color where the
+enumerators are Red, Green, Yellow, Purple, Blue, Black, and White. Define the type
+for enumerators as an unsigned integer type and arrange for the integer value of each
+enumerator to be the RGB combination for the color it represents (you can easily find
+the hexadecimal RGB encoding of any color online). Create variables of type Color
+initialized with enumerators for yellow, purple, and green. Access the enumerator value
+and extract and output the RGB components as separate values.*/
+
+# include <iostream>
+int main()
+{
+	enum class color : unsigned int {Red = 0x00ff0000, Green = 0x0000ff00, Yellow = 0x00ffff00, Purple = 0x00800080, Blue = 0x000000ff, Black = 0x00000000, White = 0x00ffffff};
+
+	color color1{color::Yellow};
+	color color2{ color::Purple };
+	color color3{ color::Green };
+
+	std::cout << "Yellow is: " << "Red: " << std::hex << ((static_cast<int>(color1)) & 0x00ff0000);
+
+
+}
