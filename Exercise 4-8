@@ -1,0 +1,36 @@
+# include <iostream>
+int main()
+{
+	float money_in_${ 0.0F }, money_in_cents{0.0f};
+	float quarters{ 0.0F }, dimes{ 0.0f }, nickels{ 0.0f }, cents{0.0f};
+
+	std::cout << "Enter an amount between 0$ and 10$: ";
+	std::cin >> money_in_$;
+
+	if ((money_in_$ <= 0) || (money_in_$ >= 10))
+	{
+		std::cout << "Incorrect amount entered. Program exiting..." << std::endl;
+		return 0;
+	}
+	else
+	{
+		money_in_cents = money_in_$ * 100.0f;
+
+		quarters = money_in_cents / 25.0f;
+		cents = (quarters - static_cast<int>(quarters)) * 25.0f;
+
+		dimes = cents / 10.0f;
+		cents = (dimes - static_cast<int>(dimes)) * 10.0f;
+
+		nickels = cents / 5.0f;
+		cents = (nickels - static_cast<int>(nickels)) * 5.0f;
+
+		std::cout << static_cast<int>(quarters) << ((quarters > 1) ? " quarters " : " quarter ") << std::endl;
+		std::cout << static_cast<int>(dimes) << ((dimes > 1) ? " dimes " : " dime ") << std::endl;
+		std::cout << static_cast<int>(nickels) << ((nickels > 1) ? " nickels " : " nickel ") << std::endl;
+		std::cout << cents << ((cents > 1) ? " cents " : " cent ") << std::endl;
+	}
+
+
+
+}
