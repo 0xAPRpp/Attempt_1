@@ -1,0 +1,18 @@
+# include <iostream>
+int main()
+{
+	int x{};
+
+	std::cin >> x;
+
+	std::cout <<
+		((x <= 20) ? " <=20 " : ((x > 20 && x <= 30) ? "20 < x <= 30" : ((x > 30 && x <= 100) ? " 30 < x <=100 " : " >100 "))) << std::endl;
+
+
+	if (x == 1)
+		std::cout << " It is one brown/white mouse " << std::endl;
+	else
+		std::cout << "Of these mice" << x << (x > 1 ? " are " : " is a ") << " brown " << (x>1 ? " mice " : " mouse ");
+
+
+}
