@@ -1,0 +1,26 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+int main()
+{
+	size_t limit{};
+
+	std::cin >> limit;
+
+	for (size_t i{ 1 }; i <= limit; i++)
+	{
+		if (i % 2 == 0)
+			continue;
+		std::cout << i * i << " ";
+
+
+	}
+
+
+
+
+
+}
+
+
