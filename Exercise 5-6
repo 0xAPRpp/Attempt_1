@@ -1,0 +1,37 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+int main()
+{
+	std::vector<unsigned long long> arb{};
+
+	unsigned long long ub{};
+
+	std::cin >> ub;
+	if (ub == 0)
+		return 0;
+
+	unsigned long long start{ 1 };
+
+	for (unsigned long long i{}; i < ub; i++)
+	{
+		if ((start % 7 == 0) || (start % 13 == 0))
+		{
+			start++;
+			continue;
+		}
+		arb.push_back(start++);
+	}
+
+	unsigned long long line{};
+	for (unsigned long long x : arb)
+	{	
+		std::cout << std::setw(5) << x << " ";
+		line++;
+		if (line % 10 == 0)
+			std:: cout << std::endl;
+
+	}
+
+}
