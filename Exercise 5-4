@@ -1,0 +1,26 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+# include <cctype>
+int main()
+{
+	const size_t max{1000};
+	std::array <char, max> text{};
+
+	std::cin.getline(text.data(),max,'*');
+
+	size_t count{ 0 };
+	for (char ch : text)
+	{
+		if (isspace(ch))
+			continue;
+		count++;
+	}
+	
+	std::cout << count << std::endl;
+
+
+
+
+}
