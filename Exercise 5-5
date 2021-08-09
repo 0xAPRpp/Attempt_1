@@ -1,0 +1,36 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+int main()
+{
+	const size_t max{1001};
+	char text[max]{}, rev[max]{};
+
+	std::cin.getline(text, max, '*');
+
+	std::cout << text << std::endl;
+
+	size_t count{};	
+	while (text[count] != '\0')
+	{
+		std::cout << text[count++] << std::endl;
+	}
+	
+	std::cout << count << std::endl;
+
+	size_t i{};
+	size_t rcount = count-1;
+	while (i < count)
+	{
+		rev[rcount--] = text[i++];
+	}
+	
+	size_t j{};
+	while (j < count)
+		std::cout << rev[j++];
+
+	std::cout << std::endl;
+}
+
+
