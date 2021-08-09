@@ -1,0 +1,31 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+int main()
+{
+	size_t val{}, total{}; 
+	float count{};
+
+	char ans{'y'};
+
+	while (std::tolower(ans) == 'y')
+	{
+		std::cout << "Do you want to enter an integer: ";
+		std::cin >> ans;
+		if (std::tolower(ans) == 'y')
+		{
+			std::cin >> val;
+			count++;
+			total += val;
+		}
+		
+	}
+
+	std::cout << total << std::endl;
+	std::cout  << (count ? total/count : 0) << std::endl;
+
+
+}
+
+
