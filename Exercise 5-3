@@ -1,0 +1,28 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+int main()
+{
+	const size_t max{ 1001 };
+	char text[max]{};
+
+	std::cin.getline(text , max, '#');
+
+	size_t i{}, count{};
+	do
+	{
+		if (text[i] == '\0')
+			break;
+		else
+			if(!isspace(text[i]))
+			{
+				count++;
+			}
+
+	} while (text[i++] != '#');
+
+	std::cout << count << std::endl;
+
+
+}
