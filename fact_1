@@ -1,0 +1,28 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+int main()
+{
+	size_t limit{}, total{};
+
+	unsigned long long fact{1};
+
+	std::cin >> limit;
+
+	for (size_t i{1}; i <= limit; i++) 
+	{
+		std::cout << i << " " << (total += i) << " ";
+		for (size_t j{1}; j <= i; j++)
+		{
+			fact *= j;
+		}
+		std::cout << fact << std::endl;
+		fact = 1;
+	}
+
+
+
+}
+
+
