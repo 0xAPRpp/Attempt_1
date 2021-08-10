@@ -1,3 +1,3 @@
-#This is an expression of my idiosyncrasies
-##Thank you git
+# This is an expression of my idiosyncrasies
+## Thank you git
 
