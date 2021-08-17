@@ -1,2 +1,2 @@
-# It is just a collection of every practice program
+# Practice
 ## Cpp
