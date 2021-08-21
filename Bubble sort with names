@@ -1,0 +1,80 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+int main()
+{
+	const size_t size{30}, length{81};
+
+	char names[size][length]{};
+
+	char* p_names[size]; 
+
+	char name[length];
+
+	char ans{ 'y' };
+
+	size_t count_s{};
+	do
+	{
+		std::cout << "Enter name(max 80 characaters): ";
+		std::cin >> name;
+
+		for (size_t i{}; i < length; i++)
+		{
+			names[count_s][i] = name[i];
+		}
+
+		std::cout << "Do you want to try again(y or n): ";
+		std::cin >> ans;
+
+		count_s++;
+
+	} while (tolower(ans) == 'y');
+
+	for (size_t i{}; i < count_s; i++)
+	{
+		p_names[i] = static_cast<char*>(names[i]);
+	}
+
+	for (size_t i{}; i < count_s; i++)
+		std::cout << p_names[i] << std::endl;
+
+	/*Bubble sort : You exit the outerloop when everything is in order. The inner loop checks all consecutive elements 
+	and swaps them if they are out of order. The condition in the inner loop will indicate if the elements are in order or not.
+	This is a great oppurtunity to add a flag inside the inner loop that can be compared with another value to see if the
+	condition fails for all the iterations in the inner loop suggesting that the elements are in order.*/
+
+	std::cout << "1" << std::endl;
+		
+	while(true)
+	{
+		bool swapped{ false };
+		char* swap{};
+		for (size_t i{}; i < (count_s - 1); i++)
+		{
+			std::cout << *p_names[i] << " " << *(p_names[i + 1]) << std::endl;
+			if (*p_names[i] > *(p_names[i+1]))
+			{
+				std::cout << *p_names[i] << " " << *(p_names[i+1] ) << std::endl;
+				swap = p_names[i];
+				p_names[i] = p_names[i + 1];
+				p_names[i + 1] = swap;
+				swapped = true;
+				std::cout << p_names[i] << " " << p_names[i+1] << std::endl;
+				std::cout << "2" << std::endl;
+			}
+			std::cout << "3" << std::endl;
+			
+		}
+		
+		std::cout << "4" << std::endl;
+		if (!swapped)
+			break;
+	}
+	for (size_t i{}; i < count_s; i++)
+		std::cout << p_names[i] << std::endl;
+
+}
+
+
