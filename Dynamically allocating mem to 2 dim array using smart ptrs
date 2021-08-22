@@ -1,0 +1,30 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+int main()
+{
+	size_t n{};
+	std::cin >> n;
+	std::unique_ptr<double* []> p_double_arr_p{ std::make_unique<double *[]>(n) };
+
+	size_t m{} ;
+	for (size_t i{}; i < n; i++)
+	{
+		std::cin >> m;
+		double* p_double_arr{ new double[m] }; //using a smart pointer here deallocates the memory once the control leaves
+		//main for loop, so the values in the p_double_arr_p will be garbage.
+		p_double_arr_p[i] = p_double_arr;
+
+		for (size_t a{}; a < m; a++)
+		{
+			std::cin >> p_double_arr_p[i][a];
+			std::cout << i << " " << a << std::endl;
+			std::cout << p_double_arr_p[i][a] << std::endl;
+		}
+		std::cout << p_double_arr_p[0][0] << std::endl;
+	}
+	for (size_t i{}; i < n; i++)
+		for (size_t j{}; j < 2; j++)
+			std::cout << p_double_arr_p[i][j] << std::endl;
+}
