@@ -1,0 +1,28 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+# include <cctype>
+int main()
+{
+	size_t size{};
+	std::cin >> size;
+
+	std::unique_ptr<double[]> values{ std::make_unique<double[]>(size) };
+
+	for (size_t i{}; i < size; i++)
+	{
+		*(values.get() + i) = 1.0 / ((i + 1) * (i + 1));
+	}
+
+	double sum{};
+	for (size_t i{}; i < size; i++)
+	{
+		sum += values[i];
+	}
+
+	std::cout << "Sum  is: " << sum << " and multiplied by 6 is: " << sum * 6 << " and sqrt of result is: "
+		<< std::sqrt(sum * 6) << std::endl;
+}
+
+
