@@ -13,7 +13,7 @@ int main()
 	size_t i{};
 	while (tolower(ch) == 'y')
 	{
-		(*days).push_back(std::make_unique<std::vector<double>>());
+		(*days).push_back(std::make_unique<std::vector<double>>()); //TnE
 		while (tolower(ch) == 'y')
 		{			
 			std::cout << "Enter temperatures for the day: ";
