@@ -1,0 +1,34 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+# include <cctype>
+int main()
+{
+	const size_t size{ 50 };
+	int odds[size]{};
+
+	for (int i{ 1 }, j{}; j < size; i += 2, j++)
+		*(odds + j) = i;
+
+	size_t perline{ 10 }, count{1};
+	for (size_t j{}; j < size; j++)
+	{
+		std::cout << std::setw(4) << *(odds+j);
+		if (count++ % perline == 0)
+			std::cout << std::endl;
+	}
+
+	std::cout << std::endl;
+
+	for (int j{49}; j >= 0; j--)
+	{
+		std::cout << std::setw(4) << *(odds + j);
+		if (count++ % perline == 0)
+			std::cout << std::endl;
+	}
+
+
+}
+
+
