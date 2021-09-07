@@ -1,0 +1,46 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+# include <cctype>
+int main()
+{
+	std::unique_ptr<std::vector<std::unique_ptr<std::vector<double>>>> days{ std::make_unique<std::vector<std::unique_ptr<std::vector<double>>>>() };
+
+	char ch{'y'};
+	double temp{};
+
+	size_t i{};
+	while (tolower(ch) == 'y')
+	{
+		(*days).push_back(std::make_unique<std::vector<double>>());
+		while (tolower(ch) == 'y')
+		{			
+			std::cout << "Enter temperatures for the day: ";
+			std::cin >> temp;
+			(*days)[i]->push_back(temp);
+			std::cout << "Add more temps? (y or n): ";
+			std::cin >> ch;
+		}
+		std::cout << "Add another day? (y or n): ";
+		std::cin >> ch;
+		i++;
+	}
+
+	double average{};
+	std::cout << std::size(*days) << std::endl;
+	for (size_t i{}; i < std::size(*days); i++)
+	{
+		std::cout << "Temperatures for day " << i + 1 << ": ";
+		for (size_t j{}; j < std::size(*(*days)[i]); j++)
+		{
+			std::cout << (*(*days)[i])[j] << ", ";
+			average += (*(*days)[i])[j];
+		}
+		std::cout << std::endl;
+		std::cout << "Average for day " << i + 1 << ": " << average / std::size(*(*days)[i]) << std::endl;
+		average = 0; //TnE
+	}
+}
+
+
