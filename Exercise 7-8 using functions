@@ -41,7 +41,7 @@ std::string string_concatenator()
 std::vector<int> integer_extractor(std::string str)
 {
 	size_t start{}, end{};
-	std::string separator{ " #" }; //Removing # causes the program to abort because # is part of the string, i.e the terminating character is stored inside the string.
+	std::string separator{ " #" }; //Not including # causes the program to abort because # is part of the string, i.e the terminating character is stored inside the string.
 	std::vector<int> values{};
 	for (size_t i{}; i < str.length(); i = end + 1)
 	{
