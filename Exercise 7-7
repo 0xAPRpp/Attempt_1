@@ -1,0 +1,33 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+# include <cctype>
+# include <string>
+# include <sstream>
+int main()
+{
+	std::string numbers{};
+
+	std::getline(std::cin,numbers,'#');
+
+	std::stringstream ss{};
+
+	ss.str( numbers);
+
+	std::cout << ss.str() << std::endl;
+
+
+		
+	int x{}, sum{}, loops{};
+	while (ss)
+	{
+		if(ss >> x)
+			sum += x;	
+	}
+
+	std::cout << sum;
+
+}
+
+
