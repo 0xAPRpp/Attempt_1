@@ -1,0 +1,96 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+# include <cctype>
+# include <string>
+# include <sstream>
+int main()
+{
+	std::string text{};
+	std::getline(std::cin, text, '*');
+
+	std::vector<std::string> words{};
+
+	const std::string separators{ " ,;:.\"!?'\n" };
+
+	size_t start{}, end{};
+
+	while ((start = text.find_first_not_of(separators, start)) != std::string::npos)
+	{
+		if ((end = text.find_first_of(separators, start + 1)) == std::string::npos)
+			end = text.length();
+
+		words.push_back(text.substr(start, end - start));
+
+		if ((start = end) >= text.length())
+			break;
+	}
+	
+	unsigned int max_length{  };
+	for (size_t i{}; i < words.size(); i++)
+	{
+		if (max_length < words[i].length())
+			max_length = words[i].length();
+	}
+
+	size_t count{};
+	size_t words_per_line{};
+	bool same{}, already_there{};
+	for (size_t i{}; i < words.size(); i++)
+	{
+		already_there = false;		
+		for (size_t a{}; a < i; a++)
+		{
+			if (words[i].length() != words[a].length())
+				continue;
+			same = true;			
+			for (size_t b{}; b < words[a].length(); b++)
+			{
+				if (tolower(words[i][b]) != tolower(words[a][b]))
+				{
+					same = false;
+					break;
+				}
+			}
+			if (same)
+			{				
+				already_there = true;
+				break;
+			}
+			
+
+		}
+		
+		if (already_there)
+			continue;
+		
+		count = 1;
+		std::cout << std::left << std::setw(max_length + 1) << words[i];
+		words_per_line++;
+		for (size_t j{}; j < words.size(); j++)
+		{
+			if (i == j)
+				continue;
+			if (words[i].length() != words[j].length())
+				continue;
+			same = true;
+			for (size_t k{}; k < words[j].length(); k++)
+			{
+				if (tolower(words[i][k]) != tolower(words[j][k]))
+				{
+					same = false;
+					break;
+				}
+			}
+			if (same)
+				count++;
+		}
+		std::cout << std::right << std::setw(4) << count << " ";
+		if (words_per_line % 3 == 0)
+			std::cout << std::endl;
+	}
+
+}
+
+
