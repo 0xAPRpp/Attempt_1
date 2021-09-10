@@ -1,0 +1,64 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+# include <cctype>
+# include <string>
+# include <sstream>
+int main()
+{
+	std::string text{};
+	std::getline(std::cin, text, '*');
+
+	std:: string word{};
+	std::cin >> word;
+
+	std::string word_copy{};
+
+	const std::string separators{ " ,;:.\"!?'\n" };
+
+	size_t start{}, end{};
+
+	while ((start = text.find_first_not_of(separators, start)) != std::string::npos)
+	{
+		if((end = text.find_first_of(separators, start+1)) == std::string::npos)
+			end = text.length();
+				
+		word_copy = text.substr(start, end - start);
+
+		std::cout << word << "-" << word_copy << std::endl;
+		std::cout << word.length() << "-" << word_copy.length() << std::endl;
+
+		bool same{};
+		if (word.length() == word_copy.length())
+		{
+			same = true;
+			for (size_t i{}; i < word.length(); i++)
+			{
+				std::cout << word[i] << "-" << word_copy[i] << std::endl;
+				if (tolower(word[i]) != tolower(word_copy[i]))
+				{
+					same = false;
+					break;
+				}
+			}
+			std::cout << std::boolalpha << same << std::endl;
+			if (same)
+			{
+				for (size_t j{start}; j < end; j++)
+				{
+					text[j] = '*';
+				}
+			}
+		}
+
+
+		if ((start = end) >= text.length())
+			break;
+	}
+
+	std::cout << text << std::endl;
+
+}
+
+
