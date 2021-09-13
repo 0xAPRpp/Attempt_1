@@ -46,7 +46,7 @@ int main()
 				continue;
 			//This loop can be encapsulated into a function since it is also used below. If the same code is used many times in this or another program
 			//It can quickly become tedious when an improvement or a modification needs to be incorporated because it has to be manually changed in all 
-			//the different locations. This can be avoided when a well defined, single action function is used instead demonstrating the convenience
+			//the different locations. This can be avoided when a well defined, single action function is used instead, demonstrating the convenience
 			//of a function.
 			same = true;			
 			for (size_t b{}; b < words[a].length(); b++) 
