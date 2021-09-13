@@ -44,8 +44,12 @@ int main()
 		{
 			if (words[i].length() != words[a].length())
 				continue;
+			//This loop can be encapsulated into a function since it is also used below. If the same code is used many times in this or another program
+			//It can quickly become tedious when an improvement or a modification needs to be incorporated because it has to be manually changed in all 
+			//the different locations. This can be avoided when a well defined, single action function is used instead, which will demonstrate the convenience
+			//of a function.
 			same = true;			
-			for (size_t b{}; b < words[a].length(); b++)
+			for (size_t b{}; b < words[a].length(); b++) 
 			{
 				if (tolower(words[i][b]) != tolower(words[a][b]))
 				{
@@ -75,7 +79,7 @@ int main()
 			if (words[i].length() != words[j].length())
 				continue;
 			same = true;
-			for (size_t k{}; k < words[j].length(); k++)
+			for (size_t k{}; k < words[j].length(); k++) //This loop can be encapsulated into a function since it is also used above.
 			{
 				if (tolower(words[i][k]) != tolower(words[j][k]))
 				{
