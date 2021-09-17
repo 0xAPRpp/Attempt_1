@@ -21,7 +21,7 @@ int main()
 	words_output(words);
 }
 
-void word_collector(const std::string& text, std::vector<std::string>& words)
+void word_collector(const std::string& text, std::vector<std::string>& words) //Adding a third argument for separators can make program more generic
 {
 	const std::string separators{ " ,;:.\"!?'\n" }; //This can be input by the function for extra flexibililty of choosing a different set of separators
 
