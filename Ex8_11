@@ -1,0 +1,54 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+# include <cctype>
+# include <string>
+# include <sstream>
+#include <string_view>
+
+void print_data(int int_arr[], size_t length = 1, std::string_view name = "Default", size_t width = 5, size_t perline = 3);
+
+int main()
+{
+
+	size_t size{};
+	std::cin >> size;
+
+	std::unique_ptr<int[]> sp_int_arr{ std::make_unique<int[]>(size) };
+
+	for (size_t i{}; i < size; i++)
+	{
+		std::cin >> sp_int_arr[i];
+	}
+
+	std::string title{};
+	std::cin >> title;
+
+	size_t width{};
+	std::cin >> width;
+
+	size_t perline{};
+	std::cin >> perline;
+
+	print_data(sp_int_arr.get(), size);
+	print_data(sp_int_arr.get(), size, title);
+	print_data(sp_int_arr.get(), size, title, width);
+	print_data(sp_int_arr.get(), size, title, width, perline);
+	print_data(sp_int_arr.get(), size, title, perline);
+	
+}
+
+
+
+void print_data(int int_arr[], size_t length, std::string_view name, size_t width, size_t perline)
+{
+	std::cout << name << std::endl;
+	for (size_t i{}; i < length; i++)
+	{
+		std::cout << std::setw(width) << *(int_arr++);
+		if ((i+1) % perline == 0)
+			std::cout << std::endl;
+	}
+	std::cout << std::endl;
+}
