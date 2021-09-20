@@ -1,6 +1,8 @@
 //code won't compile unless the standard is c++17 or above and Build -> Configuration Manager -> x64
 
-/*The gist of proper dynamic memory allocation is to reuse memory without allowing dangling pointers. 
+/*The gist of proper dynamic memory allocation is to reuse memory without allowing dangling pointers. Smart pointers allow you to do that without worrying about deallocating
+memory or resetting the pointer as against raw pointers. However we should be concerned when we use the raw pointer inside the smart pointer using the get() and similar 
+functions.
 In order to reuse memory you should be done with whatever that is stored in that memory. 
 In order to avoid a dangling pointer, you have to reset the dynamically allocated raw pointer pointing to it, this may not be needed if the pointer can be discarded, 
 i.e, when the function finishes the execution the pointer will be removed from the stack and discarded. 
