@@ -1,17 +1,17 @@
 //code won't compile unless the standard is c++17 or above and Build -> Configuration Manager -> x64
 
 /*The gist of proper dynamic memory allocation is to reuse memory without allowing dangling pointers. 
-In order to reuse memory you should be done with whatever that is stored in that memory and in order to avoid a dangling pointer, 
-you have to reset the dynamically allocated raw pointer pointing to it, this may not be needed if the pointer will be discarded, 
+In order to reuse memory you should be done with whatever that is stored in that memory. 
+In order to avoid a dangling pointer, you have to reset the dynamically allocated raw pointer pointing to it, this may not be needed if the pointer can be discarded, 
 i.e, when the function finishes the execution the pointer will be removed from the stack and discarded. 
-You should also discard all the other pointers storing that address which again will automatically be discarded 
-if they are defined within the function when the function execution ends. 
+You should also discard all the other pointers storing that address which again will automatically be discarded if they are defined within the function 
+when the function execution ends. 
 We are passing a raw pointer from the smart pointer - sp_int_arr using the get() function to the called function. 
 This passes the raw pointer. This means a raw pointer is now pointing to a memory location in the free store. 
 This will be discarded after the function execution ends and as a result there are no raw pointers that can point to this memory location. 
 This means that it is okay to pass the raw pointer inside a smart pointer as long as that pointer does not linger around in the program when it is not needed, 
 however it is very important to understand to not let it get out of control by allowing the address 
-to hang around at different places that will eventually make it difficult to trace. The same can happen with copies.*/
+to hang around at different places that will eventually make it difficult to trace. This is the reason to avoid copies also.*/
 
 # include <iostream>
 # include <array>
