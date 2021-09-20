@@ -13,7 +13,9 @@ This passes the raw pointer. This means a raw pointer is now pointing to a memor
 This will be discarded after the function execution ends and as a result there are no raw pointers that can point to this memory location. 
 This means that it is okay to pass the raw pointer inside a smart pointer as long as that pointer does not linger around in the program when it is not needed, 
 however it is very important to understand to not let it get out of control by allowing the address 
-to hang around at different places that will eventually make it difficult to trace. This is the reason to avoid copies also.*/
+to hang around at different places that will eventually make it difficult to trace. This is the reason to avoid copies also.
+Dangling pointers happen because the pointer lingers around without being discarded and since the function discards it without making any copies disallowing it to
+linger around, it is okay to pass it to the function.*/
 
 # include <iostream>
 # include <array>
