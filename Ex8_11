@@ -57,7 +57,10 @@ int main()
 }
 
 
-
+/*It is important to understand what is happening with the raw pointer from sp_int_arr.get(). As can be seen here, the raw pointer is passed to this function
+ which uses it to read through the array and print its contents. The pointer is discarded after the function execution ends. As a result it does not matter if the pointer
+ is not reset since there is no question of a dangling pointer as it is discarded after function execution. Since this function does not make copies of the raw pointer, 
+ the pointer does not linger around and it is okay to pass it.*/
 void print_data(int int_arr[], size_t length, std::string_view name, size_t width, size_t perline)
 {
 	std::cout << name << std::endl;
