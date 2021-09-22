@@ -1,0 +1,110 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+# include <cctype>
+# include <string>
+# include <sstream>
+# include <string_view>
+
+const double* find_smallest(const double d_arr[], size_t size);
+const double* find_largest(const double d_arr[], size_t size);
+void add_smallest(double d_arr[], size_t size, const double p_d_smallest);
+void Normalize(double d_arr[], size_t size, double p_d_largest);
+
+int main()
+{
+	size_t size{};
+	std::cin >> size;
+
+	std::unique_ptr<double[]> sp_d_arr{ std::make_unique<double[]>(size) };
+
+	for (size_t i{}; i < size; i++)
+	{
+		std::cin >> sp_d_arr[i];
+	}
+
+	std::cout << *find_smallest(sp_d_arr.get(),size) << std::endl;
+	std::cout << *find_largest(sp_d_arr.get(), size) << std::endl;
+
+
+	add_smallest(sp_d_arr.get(), size, *find_smallest(sp_d_arr.get(), size));
+
+	for (size_t i{}; i < size; i++)
+	{
+		std::cout << sp_d_arr[i] << " ";
+	}
+
+	Normalize(sp_d_arr.get(), size, *find_largest(sp_d_arr.get(), size));
+	
+	for(size_t i{}; i < size; i++)
+	{
+		std::cout << sp_d_arr[i] << " ";
+	}
+	
+}
+
+const double* find_smallest(const double d_arr[], size_t size)
+{
+	size_t s_index{};
+
+	for (size_t i{ 1 }; i < size; i++)
+	{
+		if (d_arr[s_index] > d_arr[i])
+			s_index = i;
+	}
+
+	return &d_arr[s_index];
+}
+
+const double* find_largest(const double d_arr[], size_t size)
+{
+	size_t l_index{};
+
+	for (size_t i{ 1 }; i < size; i++)
+	{
+		if (d_arr[l_index] < d_arr[i])
+			l_index = i;
+	}
+
+	return &d_arr[l_index];
+}
+
+void add_smallest(double d_arr[], size_t size, double p_d_smallest)
+{
+	
+	for (size_t i{}; i < size; i++)
+		d_arr[i] -= p_d_smallest;
+	
+}
+
+void Normalize(double d_arr[], size_t size, double p_d_largest)
+{
+
+	for (size_t i{}; i < size; i++)
+		d_arr[i] /= p_d_largest;
+
+}
+
+
+
+
+
+/*double find_smallest(double d_arr[], size_t size)
+{
+	double smallest{};
+
+	if (d_arr[0] < d_arr[1])
+		smallest = d_arr[0];
+	else
+		smallest = d_arr[1];
+
+	for (size_t i{2}; i < size; i++)
+	{
+		if (d_arr[i] < smallest)
+			smallest = d_arr[i];
+	}
+
+	return smallest;
+
+}*/
