@@ -1,0 +1,82 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+# include <cctype>
+# include <string>
+# include <sstream>
+# include <string_view>
+
+const double smallest(const double d_arr[], const int& size);
+const double& smallest(const std::vector<double>& d_vec);
+const int& smallest(const std::vector<int>& i_vec);
+const std::string& smallest(const std::vector<std::string>& words);
+
+int main(int argc, const char* argv[])
+{
+	const int size{std::stoi(argv[1])};
+	std::unique_ptr<double[]> p_d_arr{ std::make_unique<double[]>(size) };
+
+	for (size_t i{  }; i < size; i++)
+	{
+		std::cin >> p_d_arr[i];
+	}
+
+	
+	std::vector<int> numbers{ 15, 44, 13, 21, 6, 8, 5, 2 };
+	std::vector<double> data{ 3.5, 5, 6, -1.2, 8.7, 6.4 };
+	std::vector<std::string> names{ "Charles Dickens", "Emily Bronte", "Jane Austen",
+	"Henry James", "Arthur Miller" };
+
+	std::cout << smallest(p_d_arr.get(), size) << std::endl;
+	std::cout << smallest(data) << std::endl;
+	std::cout << smallest(numbers) << std::endl;
+	std::cout << smallest(names) << std::endl;
+}
+
+const double smallest(const double d_arr[], const int& size)
+{
+	int index_min{};
+	for (int i{1}; i < size; i++)
+	{
+		if (d_arr[index_min] > d_arr[i])
+			index_min = i;
+	}
+	return d_arr[index_min];
+}
+
+const double& smallest(const std::vector<double>& d_vec)
+{
+	size_t index_min{};
+	for (size_t i{ 1 }; i < d_vec.size(); i++)
+	{
+		if (d_vec[index_min] > d_vec[i])
+			index_min = i;
+	}
+	return d_vec[index_min];
+
+
+}
+
+const int& smallest(const std::vector<int>& i_vec)
+{
+	size_t index_min{};
+	for (size_t i{ 1 }; i < i_vec.size(); i++)
+	{
+		if (i_vec[index_min] > i_vec[i])
+			index_min = i;
+	}
+	return i_vec[index_min];
+
+}
+
+const std::string& smallest(const std::vector<std::string>& words)
+{
+	size_t index_min{};
+	for (size_t i{ 1 }; i < words.size(); i++)
+	{
+		if (words[index_min] > words[i])
+			index_min = i;
+	}
+	return words[index_min];
+}
