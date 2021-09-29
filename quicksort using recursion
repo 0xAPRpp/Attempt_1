@@ -100,12 +100,12 @@ void qsort(v_sp_string& words, size_t start, size_t end)
 		std::cout << *x;
 	std::cout << std::endl;
 
-	//check if there is more than one word to left of the current word
+	//check if there is more than one word to the left of the current word
 	if ((current - start) > 1) 
 		//sort them if there is more than one word
 		qsort(words, start, current-1);
 
-	//check if there is more than one word to right of the current word
+	//check if there is more than one word to the right of the current word
 	if ((end - current) > 1)
 		//sort them if there is more than one word
 		qsort(words, current + 1, end);
