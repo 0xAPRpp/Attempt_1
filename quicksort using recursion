@@ -1,0 +1,114 @@
+# include <iostream>
+# include <array>
+# include <vector>
+# include <iomanip>
+# include <cctype>
+# include <string>
+# include <sstream>
+# include <string_view>
+
+using v_sp_string = std::vector< std::shared_ptr<std::string>>;
+
+void word_extractor(std::string_view text, std::string_view separators, v_sp_string& words);
+void swapper(v_sp_string& words, const size_t& index_1, const size_t& index_2);
+void qsort(v_sp_string& words, size_t start, size_t end);
+
+int main()
+{
+	std::string text{}; 
+	std::string_view separators{ " ,.!?\"\n" }; //using string_view
+	std::getline(std::cin, text, '*');
+
+	std::vector<std::shared_ptr<std::string>> words{};
+	//what if words is empty
+
+	word_extractor(text,separators,words);
+
+	for (auto x : words)
+		std::cout << *x << std::endl;
+
+	qsort(words, 0, words.size() - 1);
+
+	for (auto x : words)
+		std::cout << *x << std::endl;
+
+}
+
+void word_extractor(std::string_view text, std::string_view separators, v_sp_string& words)
+{
+	size_t start{}, end{};
+	/*find first char and check for npos in the same expression. Loop will fail when npos is found and as a result, the function exits
+      start is initialized to zero during variable definition, hence the first char will be found*/
+	while ((start = text.find_first_not_of(separators, start)) != std::string::npos) 
+	{
+		/*find first separator after first char and check for npos. This statement will not execute anyways when start is npos.
+	      If this statement is reached, it means a word is found and a separator is likely to be found after the first char unless there is only one word followed by no separators*/
+		if ((end = text.find_first_of(separators, start+1)) == std::string::npos) 
+			end = text.length(); //if no separator is found, then we reached the end of the string text. We will initialize start to end+1.
+		/*The following statement allocates memory dynamically from the freestore to the string that is a word extracted from text.
+		  This returned pointer to memory is then pushed back into the vector*/
+		words.push_back(std::make_shared<std::string>(std::string(text.substr(start, end-start))));
+		//Start searching for the next word
+		start = end + 1;
+	}
+}
+
+//Swapping the smart pointers to strings
+void swapper(v_sp_string& words, const size_t& index_1, const size_t& index_2)
+{
+	std::shared_ptr<std::string> temp{};
+
+	temp = words[index_1];
+	words[index_1] = words[index_2];
+	words[index_2] = temp;
+
+}
+
+void qsort(v_sp_string& words, size_t start, size_t end)
+{
+	std::cout << start << " " << end << std::endl;
+	size_t current{}; //for storing the index value of the chosen word/pointer.
+	//Choosing an arbitrary word i.e., choosing a pointer to this word
+	current = (start + end) / 2; //Index value of the pointer to chosen word.
+
+	//swapping the current element with the first element
+	//swapping makes sequencing through the elements of the vector convenient.
+	swapper(words, current, start); //chosen word is at the start of the vector
+
+	for (auto x : words)
+		std::cout << *x;
+	std::cout << std::endl;
+
+	//Compare all the elements in the vector with the chosen word and move all the words
+	//smaller than chosen word to increasing indexes after the current position of the chosen word
+	for (size_t i{ start + 1 }, j{ start +1 }; i < words.size(); i++)
+	{
+		if (*words[start] > *words[i]) //remember to dereference the pointers.
+			swapper(words, j++, i);
+		current = j-1;
+	}
+
+	for (auto x : words)
+		std::cout << *x ;
+	std::cout << std::endl;
+
+	//swap the current element back with the last swapped element
+	//This will sequence the elements smaller than chosen word to the left and vice versa
+	swapper(words, start, current);
+	
+	for (auto x : words)
+		std::cout << *x;
+	std::cout << std::endl;
+
+	//check if there is more than one word to left of the current word
+	if ((current - start) > 1) 
+		//sort them if there is more than one word
+		qsort(words, start, current-1);
+
+	//check if there is more than one word to right of the current word
+	if ((end - current) > 1)
+		//sort them if there is more than one word
+		qsort(words, current + 1, end);
+
+
+}
